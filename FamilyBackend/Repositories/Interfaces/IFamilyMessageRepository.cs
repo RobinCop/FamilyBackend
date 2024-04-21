@@ -6,5 +6,7 @@ namespace FamilyBackend.Repositories.Interfaces
     {
         IEnumerable<FamilyMessage> GetMessagesByFamilyId(long groupId);
         void AddMessage(FamilyMessage message);
+        void UpdateMessage(FamilyMessage message);
+        void DeleteMessage(long messageId);
     }
 }
