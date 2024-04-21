@@ -18,12 +18,12 @@ namespace FamilyBackend.Controllers
             _familyMessageService = familiMessageService;
         }
 
-        [HttpGet("{groupId}", Name = "GetMessageByGroupId")]
-        public ActionResult<IEnumerable<FamilyMessage>> GetMessagesByGroupId(long groupId)
+        [HttpGet("{familyId}", Name = "GetMessagesByFamilyId")]
+        public ActionResult<IEnumerable<FamilyMessage>> GetMessagesByFamilyId(long familyId)
         {
             try
             {
-                var messages = _familyMessageService.GetFamilyMessagesByFamilyId(groupId);
+                var messages = _familyMessageService.GetFamilyMessagesByFamilyId(familyId);
 
                 if (messages == null || !messages.Any())
                 {

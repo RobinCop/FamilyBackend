@@ -15,6 +15,7 @@ namespace FamilyBackend.DatabaseContexts
         public DbSet<FamilyPost> FamilyPost { get; set; }
         public DbSet<DirectMessage> DirectMessage { get; set; }
         public DbSet<FamilyMembership> FamilyMembership { get; set; }   
+        public DbSet<FamilyPostMessage> FamilyPostMessage { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -66,6 +67,12 @@ namespace FamilyBackend.DatabaseContexts
                 .WithMany()
                 .HasForeignKey(dm => dm.AuthorId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<FamilyPostMessage>()
+                .HasOne(fpm => fpm.FamilyPost)
+                .WithMany(fp => fp.PostMessages)
+                .HasForeignKey(fpm => fpm.FamilyPostId)
+                .OnDelete(DeleteBehavior.Cascade); 
 
         }
 

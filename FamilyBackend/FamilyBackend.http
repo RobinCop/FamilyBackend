@@ -3,7 +3,4 @@
 GET {{FamilyBackend_HostAddress}}/weatherforecast/
 Accept: application/json
 
-GET {{FamilyBackend_HostAddress}}/weatherforecast/
-Accept: application/json
-
 ###
