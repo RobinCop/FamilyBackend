@@ -2,7 +2,7 @@
 
 namespace FamilyBackend.Services.Interfaces
 {
-    public interface IMessageService
+    public interface IFamilyMessageService
     {
         IEnumerable<FamilyMessage> GetMessagesByGroupId(long groupId);
     }

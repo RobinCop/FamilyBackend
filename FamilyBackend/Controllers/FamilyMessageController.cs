@@ -6,16 +6,16 @@ namespace FamilyBackend.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class MessageController : ControllerBase
+    public class FamilyMessageController : ControllerBase
     {
-        private readonly ILogger<MessageController> _logger;
-        private readonly IMessageService _messageService;
+        private readonly ILogger<FamilyMessageController> _logger;
+        private readonly IFamilyMessageService _familyMessageService;
 
 
-        public MessageController(ILogger<MessageController> logger, IMessageService messageService)
+        public FamilyMessageController(ILogger<FamilyMessageController> logger, IFamilyMessageService familiMessageService)
         {
             _logger = logger;
-            _messageService = messageService;
+            _familyMessageService = familiMessageService;
         }
 
         [HttpGet("{groupId}", Name = "GetMessageByGroupId")]
@@ -23,8 +23,7 @@ namespace FamilyBackend.Controllers
         {
             try
             {
-                // Assuming GetMessageById method fetches messages from some data source
-                var messages = _messageService.GetMessagesByGroupId(groupId);
+                var messages = _familyMessageService.GetMessagesByGroupId(groupId);
 
                 if (messages == null || !messages.Any())
                 {
