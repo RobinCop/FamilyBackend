@@ -13,9 +13,9 @@ namespace FamilyBackend.Services
             _messageRepository = messageRepository;
         }
 
-        public IEnumerable<Message> GetMessagesByGroupId(long groupId)
+        public IEnumerable<FamilyMessage> GetMessagesByGroupId(long groupId)
         {
-            return _messageRepository.GetMessagesByGroupId(groupId);
+            return _messageRepository.GetMessagesByFamilyId(groupId);
         }
     }
 }

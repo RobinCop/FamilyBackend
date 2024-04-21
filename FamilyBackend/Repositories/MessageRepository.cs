@@ -13,16 +13,16 @@ namespace FamilyBackend.Repositories
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Message> GetMessagesByGroupId(long groupId)
+        public IEnumerable<FamilyMessage> GetMessagesByFamilyId(long groupId)
         {
             // Assuming you have a DbSet<Message> in your DatabaseContext named Messages
-            return _dbContext.Messages.Where(m => m.FamiliyGroupId == groupId).ToList();
+            return _dbContext.FamilyMessage.Where(m => m.RecipientId == groupId).ToList();
         }
 
-        public void AddMessage(Message message)
+        public void AddMessage(FamilyMessage message)
         {
             // Assuming you have a DbSet<Message> in your DatabaseContext named Messages
-            _dbContext.Messages.Add(message);
+            _dbContext.FamilyMessage.Add(message);
             _dbContext.SaveChanges();
         }
     }

@@ -2,11 +2,10 @@
 {
     public class FamilyMember
     {
-        public long FamilyMemberId { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public FamilyGroup FamilyGroup { get; set; }
+        public int FamilyMemberId { get; set; }
+        public required string Name { get; set; }
+        public byte[]? ProfilePicture { get; set; }
+        public ICollection<FamilyMembership>? FamilyMemberships { get; set; }
 
     }
 }

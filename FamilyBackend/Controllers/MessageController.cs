@@ -19,7 +19,7 @@ namespace FamilyBackend.Controllers
         }
 
         [HttpGet("{groupId}", Name = "GetMessageByGroupId")]
-        public ActionResult<IEnumerable<Message>> GetMessagesByGroupId(long groupId)
+        public ActionResult<IEnumerable<FamilyMessage>> GetMessagesByGroupId(long groupId)
         {
             try
             {
