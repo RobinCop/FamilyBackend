@@ -23,7 +23,7 @@ namespace FamilyBackend.Controllers
         {
             try
             {
-                var messages = _familyMessageService.GetMessagesByGroupId(groupId);
+                var messages = _familyMessageService.GetFamilyMessagesByGroupId(groupId);
 
                 if (messages == null || !messages.Any())
                 {

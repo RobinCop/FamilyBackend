@@ -16,7 +16,7 @@ namespace FamilyBackend.Repositories
             _dbContext = dbContext;
         }
 
-        public IEnumerable<FamilyMessage> GetMessagesByFamilyId(long groupId)
+        public IEnumerable<FamilyMessage>? GetFamilyMessagesByFamilyId(long groupId)
         {
             try
             {
@@ -29,7 +29,23 @@ namespace FamilyBackend.Repositories
             }
         }
 
-        public void AddMessage(FamilyMessage message)
+        public FamilyMessage? GetFamilyMessageById(long messageId)
+        {
+            try
+            {
+                var famMessage = _dbContext.FamilyMessage.Find(messageId);
+                if (famMessage == null)
+                    return null;
+                return famMessage;
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError($"An error occurred while retrieving message with ID {messageId}: {ex.Message}");
+                return null;
+            }
+        }
+
+        public void AddFamilyMessage(FamilyMessage message)
         {
             try
             {
@@ -43,7 +59,7 @@ namespace FamilyBackend.Repositories
             }
         }
 
-        public void UpdateMessage(FamilyMessage message)
+        public void UpdateFamilyMessage(FamilyMessage message)
         {
             try
             {
@@ -57,7 +73,7 @@ namespace FamilyBackend.Repositories
             }
         }
 
-        public void DeleteMessage(long messageId)
+        public void DeleteFamilyMessage(long messageId)
         {
             var message = _dbContext.FamilyMessage.Find(messageId);
             if (message == null)
@@ -77,5 +93,7 @@ namespace FamilyBackend.Repositories
                 _logger.LogError($"An error occurred while deleting message with ID {messageId}: {ex.Message}");
             }
         }
+
+    
     }
 }

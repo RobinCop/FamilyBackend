@@ -4,9 +4,10 @@ namespace FamilyBackend.Repositories.Interfaces
 {
     public interface IFamilyMessageRepository
     {
-        IEnumerable<FamilyMessage> GetMessagesByFamilyId(long groupId);
-        void AddMessage(FamilyMessage message);
-        void UpdateMessage(FamilyMessage message);
-        void DeleteMessage(long messageId);
+        IEnumerable<FamilyMessage>? GetFamilyMessagesByFamilyId(long groupId);
+        FamilyMessage? GetFamilyMessageById(long messageId);
+        void AddFamilyMessage(FamilyMessage message);
+        void UpdateFamilyMessage(FamilyMessage message);
+        void DeleteFamilyMessage(long messageId);
     }
 }
