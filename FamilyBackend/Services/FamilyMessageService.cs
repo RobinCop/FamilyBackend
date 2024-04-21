@@ -7,35 +7,79 @@ namespace FamilyBackend.Services
     public class FamilyMessageService : IFamilyMessageService
     {
         private readonly IFamilyMessageRepository _familyMessageRepository;
+        private readonly ILogger<FamilyMessageService> _logger;
 
-        public FamilyMessageService(IFamilyMessageRepository familyMessageRepository)
+        public FamilyMessageService(IFamilyMessageRepository familyMessageRepository, ILogger<FamilyMessageService> logger)
         {
             _familyMessageRepository = familyMessageRepository;
+            _logger = logger;
         }
 
-        public IEnumerable<FamilyMessage>? GetFamilyMessagesByGroupId(long groupId)
+        public IEnumerable<FamilyMessage>? GetFamilyMessagesByFamilyId(long familyId)
         {
-            return _familyMessageRepository.GetFamilyMessagesByFamilyId(groupId);
+            try
+            {
+                var messages = _familyMessageRepository.GetFamilyMessagesByFamilyId(familyId);
+                return messages;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred while retrieving family messages for Group ID {familyId}.");
+                throw;
+            }
         }
 
-        public FamilyMessage? GetFamilyMessageById(long messageId)
+        public FamilyMessage? GetFamilyMessageById(long familyMessageId)
         {
-            return _familyMessageRepository.GetFamilyMessageById(messageId);
+            try
+            {
+                var message = _familyMessageRepository.GetFamilyMessageById(familyMessageId);
+                return message;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred while retrieving family message with ID {familyMessageId}.");
+                throw;
+            }
         }
 
         public void AddFamilyMessage(FamilyMessage message)
         {
-            _familyMessageRepository.AddFamilyMessage(message);
+            try
+            {
+                _familyMessageRepository.AddFamilyMessage(message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while adding a new family message.");
+                throw;
+            }
         }
 
-        public void DeleteFamilyMessage(long messageId)
+        public void DeleteFamilyMessage(long familymessageId)
         {
-            _familyMessageRepository.DeleteFamilyMessage(messageId);
+            try
+            {
+                _familyMessageRepository.DeleteFamilyMessage(familymessageId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred while deleting family message with ID {familymessageId}.");
+                throw;
+            }
         }
 
         public void UpdateFamilyMessage(FamilyMessage message)
         {
-            _familyMessageRepository.UpdateFamilyMessage(message);
+            try
+            {
+                _familyMessageRepository.UpdateFamilyMessage(message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred while updating family message with ID {message.FamilyMessageId}.");
+                throw;
+            }
         }
     }
 }

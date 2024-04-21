@@ -6,9 +6,8 @@ namespace FamilyBackend.Repositories
 {
     public class FamilyMessageRepository : IFamilyMessageRepository
     {
-        private readonly DatabaseContext _dbContext;
         private readonly ILogger<FamilyMessageRepository> _logger;
-
+        private readonly DatabaseContext _dbContext;
 
         public FamilyMessageRepository(ILogger<FamilyMessageRepository> logger , DatabaseContext dbContext)
         {
@@ -75,15 +74,15 @@ namespace FamilyBackend.Repositories
 
         public void DeleteFamilyMessage(long messageId)
         {
-            var message = _dbContext.FamilyMessage.Find(messageId);
-            if (message == null)
-            {
-                _logger.LogWarning($"Message with ID {messageId} not found.");
-                return;
-            }
-
             try
             {
+                var message = _dbContext.FamilyMessage.Find(messageId);
+                if (message == null)
+                {
+                    _logger.LogWarning($"Message with ID {messageId} not found.");
+                    return;
+                }
+
                 _dbContext.FamilyMessage.Remove(message);
                 _dbContext.SaveChanges();
                 _logger.LogInformation($"Message with ID {messageId} deleted successfully.");

@@ -1,8 +1,8 @@
 ﻿using FamilyBackend.Models;
 
-namespace FamilyBackend.Repositories.Interfaces
+namespace FamilyBackend.Services.Interfaces
 {
-    public interface IFamilyRepository
+    public interface IFamilyService
     {
         void CreateFamily(Family newFamily);
         Family? GetFamilyById(int familyId);
